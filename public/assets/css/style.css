@@ -1,0 +1,166 @@
+.bg-web-primary {
+    background-color: #3e4c79;
+    color: #fff;
+}
+
+.card-shadow {
+    box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 30px -6px rgba(0, 0, 0, 0.75);
+}
+.carousel-item {
+    display: flex;
+    overflow: hidden;
+}
+.carousel-card {
+    flex: 1 0 25%; /* Display 4 cards per slide */
+    max-width: 25%;
+}
+
+.card {
+    margin: 10px;
+}
+
+.card-container {
+    border-radius: 1em;
+    perspective: 1000px;
+}
+
+.card-flip {
+    border-radius: 1em;
+    width: 100%;
+    height: 18em;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.card-container:hover .card-flip {
+    transform: rotateY(180deg);
+}
+
+.card-front,
+.card-back {
+    border-radius: 1em;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-back {
+    background-color: white;
+    color: black;
+    transform: rotateY(180deg);
+}
+
+.card-back .card-body {
+    padding: 1.5em;
+}
+
+.card-mengapa {
+    position: relative;
+    overflow: hidden; /* Ensure content does not overflow the card */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling and shadow transitions */
+}
+
+.card-mengapa:hover {
+    transform: scale(1.05); /* Slightly scale up the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+.card-mengapa .card-body {
+    position: relative;
+    min-height: 250px; /* Set a fixed height for the card body */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth color transitions */
+}
+
+.card-mengapa:hover .card-body {
+    background-color: #ffc107; /* bg-warning color */
+    color: #000; /* Text color when hovered */
+}
+
+.card-mengapa img {
+    transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.card-mengapa:hover img {
+    opacity: 0; /* Fade out the image on hover */
+}
+
+.card-mengapa .hover-text {
+    position: absolute;
+    font-weight: 500;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #ffc107;
+    padding: 1em;
+    border-radius: 5px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Initially hidden */
+    transition: opacity 0.3s ease; /* Smooth opacity transition */
+}
+
+.card-mengapa:hover .hover-text {
+    opacity: 1; /* Show text on hover */
+}
+
+
+.text-primary {
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.text-warning {
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.title:hover .text-title {
+    color: #ffc107!important; /* text-warning color */
+}
+
+.title:hover .text-sub {
+    color: #007bff!important; /* text-primary color */
+}
+
+.card-kanan:hover{
+    background-color: #0d6efd!important;
+    transition: 0.5s ease; /* Smooth opacity transition */
+}
+
+
+.title-belakang{
+    display: none;
+}
+
+.card-kanan:hover .title-belakang{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+    transition: 0.5s ease; /* Smooth opacity transition */
+}
+
+.card-kanan:hover .title-depan{
+    display: none;
+    transition: 0.5s ease; /* Smooth opacity transition */
+}
+
+.makna-logo {
+    opacity: 0;
+    transform: translateY(20px); /* Start 20px below */
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Adjust duration and timing as needed */
+}
+
+.logo-tentang:hover .makna-logo {
+    opacity: 1;
+    transform: translateY(0); /* Move to original position */
+}
+
