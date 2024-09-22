@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\Admin\MediaController;
+use App\Http\Controllers\Admin\ModulController;
+use App\Http\Controllers\Admin\TeamController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -8,10 +10,9 @@ Route::get('/dashboard', function () {
     return view('admin.pages.dashboard');
 })->name('dashboard');
 
+Route::resource('/modul', ModulController::class)->names('modul');
 Route::resource('/media', MediaController::class)->names('media');
-Route::get('/docs', function () {
-    return view('admin.pages.docs');
-})->name('docs');
+Route::resource('/tim', TeamController::class)->names('tim');
 Route::get('/orders', function () {
     return view('admin.pages.orders');
 })->name('orders');

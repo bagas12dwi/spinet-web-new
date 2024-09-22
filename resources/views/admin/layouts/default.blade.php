@@ -38,6 +38,8 @@
     <!-- Javascript -->
     <script src="{{ URL::asset('admin/assets/plugins/popper.min.js') }}"></script>
     <script src="{{ URL::asset('admin/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+        crossorigin="anonymous"></script>
 
     <!-- Charts JS -->
     <script src="{{ URL::asset('admin/assets/plugins/chart.js/chart.min.js') }}"></script>
@@ -45,6 +47,38 @@
 
     <!-- Page Specific JS -->
     <script src="{{ URL::asset('admin/assets/js/app.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script type="text/javascript">
+        $(function() {
+            $(document).on('click', '#delete', function(e) {
+                e.preventDefault();
+
+                // Use `$(this)` to get the clicked delete button, then find the closest form
+                var form = $(this).closest('form');
+
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit(); // submit the correct form
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+
     @stack('script')
 
 </body>

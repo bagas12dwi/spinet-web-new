@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,9 +30,8 @@ Route::get('/materi', function () {
 Route::get('/media', [MediaController::class, 'index'])->name('media');
 Route::get('/detail-media/{medium}', [MediaController::class, 'show'])->name('detail');
 
-Route::get('/tentang', function () {
-    return view('users.screens.tentang.index');
-})->name('tentang');
+Route::get('/tentang', [AboutController::class, 'index'])->name('tentang');
+
 Route::get('/kontak', function () {
     return view('users.screens.kontak.index');
 })->name('kontak');

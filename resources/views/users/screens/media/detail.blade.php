@@ -63,7 +63,6 @@
                     role="tab" aria-controls="komentar" aria-selected="false">Komentar</button>
             </li>
         </ul>
-
         <!-- Tab Content -->
         <div class="tab-content p-5" id="myTabContent">
             <div class="tab-pane fade show active" id="deskripsi" role="tabpanel" aria-labelledby="deskripsi-tab">

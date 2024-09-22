@@ -16,7 +16,7 @@
                 <div class="page-utilities">
                     <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                         <div class="col-auto">
-                            <a class="btn app-btn-primary" href="{{ route('admin.media.create') }}">
+                            <a class="btn app-btn-primary" href="{{ route('admin.tim.create') }}">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor"
                                     class="bi bi-plus-circle-fill me-2" viewBox="0 0 16 16">
                                     <path
@@ -32,23 +32,25 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 10px">No.</th>
+                    <th scope="col" style="width: 5em">Foto</th>
                     <th scope="col">Nama</th>
-                    <th scope="col">Tipe</th>
+                    <th scope="col">Posisi</th>
                     <th scope="col" style="width: 10%">Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($media as $key => $item)
+                @forelse ($tim as $key => $item)
                     <tr>
                         <th scope="row">{{ $key + 1 }}</th>
-                        <td>{{ $item->title }}</td>
+                        <td><img src="{{ URL::asset('storage/' . $item->img_path) }}" style="height: 5em" alt="">
+                        </td>
+                        <td>{{ $item->name }}</td>
                         <td class="text-uppercase">
-                            <span
-                                class="badge {{ strtolower($item->extension) == 'pdf' ? 'text-bg-primary' : 'text-bg-success' }} text-white">{{ $item->extension }}</span>
+                            <span class="badge text-bg-primary text-white">{{ $item->role }}</span>
                         </td>
                         <td>
                             <div class="d-flex gap-1">
-                                <a href="{{ route('admin.media.edit', $item->id) }}" class="btn btn-warning">
+                                <a href="{{ route('admin.tim.edit', $item->id) }}" class="btn btn-warning">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                         fill="currentColor" class="bi bi-pencil-square text-white" viewBox="0 0 16 16">
                                         <path
@@ -57,7 +59,7 @@
                                             d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
                                     </svg>
                                 </a>
-                                <form id="deleteForm" action="{{ route('admin.media.destroy', $item->id) }}" method="post">
+                                <form id="deleteForm" action="{{ route('admin.tim.destroy', $item->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger" data-confirm-delete="true" id="delete">
@@ -82,18 +84,17 @@
         <nav class="app-pagination mt-5">
             <ul class="pagination justify-content-center">
                 {{-- Previous Page Link --}}
-                @if ($media->onFirstPage())
+                @if ($tim->onFirstPage())
                     <li class="page-item disabled" aria-disabled="true">
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
                     </li>
                 @else
                     <li class="page-item">
-                        <a class="page-link" href="{{ $media->previousPageUrl() }}" rel="prev">Sebelumnya</a>
+                        <a class="page-link" href="{{ $tim->previousPageUrl() }}" rel="prev">Sebelumnya</a>
                     </li>
                 @endif
-
                 {{-- Pagination Elements --}}
-                @foreach ($media->links()->elements as $element)
+                @foreach ($tim->links()->elements as $element)
                     {{-- "Three Dots" Separator --}}
                     @if (is_string($element))
                         <li class="page-item disabled" aria-disabled="true"><a class="page-link">{{ $element }}</a>
@@ -103,7 +104,7 @@
                     {{-- Array Of Links --}}
                     @if (is_array($element))
                         @foreach ($element as $page => $url)
-                            @if ($page == $media->currentPage())
+                            @if ($page == $tim->currentPage())
                                 <li class="page-item active" aria-current="page"><a
                                         class="page-link">{{ $page }}</a></li>
                             @else
@@ -115,9 +116,9 @@
                 @endforeach
 
                 {{-- Next Page Link --}}
-                @if ($media->hasMorePages())
+                @if ($tim->hasMorePages())
                     <li class="page-item">
-                        <a class="page-link" href="{{ $media->nextPageUrl() }}" rel="next">Berikutnya</a>
+                        <a class="page-link" href="{{ $tim->nextPageUrl() }}" rel="next">Berikutnya</a>
                     </li>
                 @else
                     <li class="page-item disabled" aria-disabled="true">

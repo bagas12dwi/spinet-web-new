@@ -7,16 +7,16 @@ use App\Models\Media;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-class MediaController extends Controller
+class ModulController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $media = Media::where('type', 'media')->orderBy('id', 'DESC')->paginate(10);
-        return view('admin.pages.media.index', [
-            'title' => 'Media',
+        $media = Media::where('type', 'modul')->orderBy('id', 'DESC')->paginate(10);
+        return view('admin.pages.modul.index', [
+            'title' => 'Modul',
             'media' => $media
         ]);
     }
@@ -26,8 +26,8 @@ class MediaController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.media.create', [
-            'title' => 'Media'
+        return view('admin.pages.modul.create', [
+            'title' => 'Modul'
         ]);
     }
 
@@ -47,26 +47,23 @@ class MediaController extends Controller
         $validatedData['document_path'] = $request->file('document_path')->store('media/media');
 
         $validatedData['extension'] = $request->file('document_path')->getClientOriginalExtension();
-        $validatedData['type'] = 'media';
+        $validatedData['type'] = 'modul';
 
         Media::create($validatedData);
-        return redirect()->route('admin.media.index')->with('success', 'Media berhasil ditambahkan!');
+        return redirect()->route('admin.modul.index')->with('success', 'Modul berhasil ditambahkan!');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Media $media)
-    {
-        //
-    }
+    public function show(Media $medium) {}
 
     /**
      * Show the form for editing the specified resource.
      */
     public function edit(Media $medium)
     {
-        return view('admin.pages.media.edit', [
+        return view('admin.pages.modul.edit', [
             'title' => 'Media',
             'media' => $medium
         ]);
@@ -99,7 +96,7 @@ class MediaController extends Controller
 
         Media::where('id', $medium->id)->update($validatedData);
 
-        return redirect()->route('admin.media.index')->with('success', 'Media berhasil diubah !');
+        return redirect()->route('admin.modul.index')->with('success', 'Media berhasil diubah !');
     }
 
     /**

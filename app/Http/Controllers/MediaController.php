@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
+use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
 {
@@ -13,7 +14,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $media = Media::all();
+        $media = Media::orderBy('id', 'DESC')->paginate(10);
         return view('users.screens.media.index', [
             'title' => 'Media',
             'media' => $media
@@ -66,8 +67,5 @@ class MediaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Media $media)
-    {
-        //
-    }
+    public function destroy(Media $medium) {}
 }

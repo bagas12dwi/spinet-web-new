@@ -97,7 +97,7 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                @foreach ($media as $item)
+                @forelse ($media as $item)
                     <div class="col-3 col-md-3 col-sm-6">
                         <a href="{{ route('detail', $item->id) }}" class="nav-link">
                             <div class="card card-shadow" style="height: 33em">
@@ -115,8 +115,58 @@
                             </div>
                         </a>
                     </div>
-                @endforeach
+                @empty
+                    <h4 class="text-center fw-bold my-5">Tidak ada media</h4>
+                @endforelse
             </div>
+            <nav class="app-pagination mt-5">
+                <ul class="pagination justify-content-center">
+                    {{-- Previous Page Link --}}
+                    @if ($media->onFirstPage())
+                        <li class="page-item disabled" aria-disabled="true">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Sebelumnya</a>
+                        </li>
+                    @else
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $media->previousPageUrl() }}" rel="prev">Sebelumnya</a>
+                        </li>
+                    @endif
+
+                    {{-- Pagination Elements --}}
+                    @foreach ($media->links()->elements as $element)
+                        {{-- "Three Dots" Separator --}}
+                        @if (is_string($element))
+                            <li class="page-item disabled" aria-disabled="true"><a
+                                    class="page-link">{{ $element }}</a>
+                            </li>
+                        @endif
+
+                        {{-- Array Of Links --}}
+                        @if (is_array($element))
+                            @foreach ($element as $page => $url)
+                                @if ($page == $media->currentPage())
+                                    <li class="page-item active" aria-current="page"><a
+                                            class="page-link">{{ $page }}</a></li>
+                                @else
+                                    <li class="page-item"><a class="page-link"
+                                            href="{{ $url }}">{{ $page }}</a></li>
+                                @endif
+                            @endforeach
+                        @endif
+                    @endforeach
+
+                    {{-- Next Page Link --}}
+                    @if ($media->hasMorePages())
+                        <li class="page-item">
+                            <a class="page-link" href="{{ $media->nextPageUrl() }}" rel="next">Berikutnya</a>
+                        </li>
+                    @else
+                        <li class="page-item disabled" aria-disabled="true">
+                            <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Berikutnya</a>
+                        </li>
+                    @endif
+                </ul>
+            </nav>
         </div>
     </section>
 @endsection
