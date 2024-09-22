@@ -89,7 +89,7 @@
                                     @if ($item->facebook_name)
                                         <li>
                                             <a class="link-body-emphasis rounded-circle border border-muted border-2 d-flex justify-content-center align-items-center text-muted"
-                                                href="#" style="width: 40px; height: 40px;">
+                                                href="" style="width: 40px; height: 40px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
                                                     <path
@@ -101,7 +101,8 @@
                                     @if ($item->ig_name)
                                         <li class="ms-3">
                                             <a class="link-body-emphasis rounded-circle border border-muted border-2 d-flex justify-content-center align-items-center text-muted"
-                                                href="#" style="width: 40px; height: 40px;">
+                                                href="www.instagram.com/{{ $item->ig_name }}" target="_blank"
+                                                style="width: 40px; height: 40px;">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
                                                     <path
