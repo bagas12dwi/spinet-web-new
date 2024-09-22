@@ -28,7 +28,7 @@
                     <a class="nav-link" href="{{ route('kontak') }}">Kontak</a>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-primary" href="#">Masuk</a>
+                    <a class="btn btn-primary" href="{{ route('login') }}">Masuk</a>
                 </li>
             </ul>
         </div>

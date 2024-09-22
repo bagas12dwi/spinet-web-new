@@ -106,4 +106,279 @@
             </div>
         </div>
     </section>
+
+    <section id="faq" class="my-4">
+        <div class="container">
+            <h3 class="fw-bold text-warning text-center mb-3">
+                Pertanyaan yang sering diajukan
+            </h3>
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            Bagaimana cara mendaftar dan memulai kursus di Spinesa?
+                        </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Apakah saya bisa mengakses kursus di Spinesa dari berbagai perangkat?
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            Bagaimana cara berinteraksi dengan instruktur dan peserta lain selama kursus?
+                        </button>
+                    </h2>
+                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
+                            collapse plugin adds the appropriate classes that we use to style each element. These classes
+                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
+                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
+                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
+                            does limit overflow.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="diskusi" class="my-5">
+        <div class="container">
+            <h3 class="fw-bold text-warning">
+                Forum Diskusi
+            </h3>
+            <h6 class="fw-semibold mb-4">Anda dapat menemukan jawaban atas pertanyaan yang sering ditanyakan, berdiskusi
+                dengan
+                komunitas, serta mendapatkan solusi terkait penggunaan SPINET.</h6>
+            <div class="container mb-5 card-shadow rounded-3">
+                <!-- Nav Tabs -->
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="deskripsi-tab" data-bs-toggle="tab"
+                            data-bs-target="#deskripsi" type="button" role="tab" aria-controls="deskripsi"
+                            aria-selected="true">Diskusi 1</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="komentar-tab" data-bs-toggle="tab" data-bs-target="#komentar"
+                            type="button" role="tab" aria-controls="komentar" aria-selected="false">Diskusi
+                            2</button>
+                    </li>
+                </ul>
+
+                <!-- Tab Content -->
+                <div class="tab-content p-5" id="myTabContent">
+                    <div class="tab-pane fade show active" id="deskripsi" role="tabpanel"
+                        aria-labelledby="deskripsi-tab">
+                        <form action="" method="post" class="mb-3">
+                            @csrf
+                            <div class="mb-3">
+                                <textarea class="form-control" name="komenter" id="komenter" rows="3"></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                        <div class="card mb-3 border border-0 ">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                            <form action="" method="post">
+                                @csrf
+                                <div class="mb-3">
+                                    <textarea class="form-control" name="reply-comment" id="reply-comment" rows="1"></textarea>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="komentar-tab">
+                        <form action="" method="post" class="mb-3">
+                            @csrf
+                            <div class="mb-3">
+                                <textarea class="form-control" name="komenter" id="komenter" rows="3"></textarea>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Kirim</button>
+                            </div>
+                        </form>
+                        <div class="card mb-3 border border-0 ">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                            <form action="" method="post">
+                                @csrf
+                                <div class="mb-3">
+                                    <textarea class="form-control" name="reply-comment" id="reply-comment" rows="1"></textarea>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-primary">Kirim</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
+                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                    alt="">
+                                <h5 class="card-title">John Doe</h5>
+                                <p class="text-muted">10 Agustus 2024</p>
+                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
