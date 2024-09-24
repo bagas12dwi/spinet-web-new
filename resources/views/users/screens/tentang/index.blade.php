@@ -34,32 +34,20 @@
                 <div class="col-6 col-md-6 col-sm-12 makna-logo">
                     <div class="card bg-web-primary text-light mb-3">
                         <div class="card-body">
-                            1. Tanda panah 2 bolak-balik : SPINET bersifat interaktif
+                            @php
+                                $visi = $setting->where('title', 'Visi')->first();
+                            @endphp
+                            <h4 class="fw-bold">Visi</h4>
+                            {{ $visi->description }}
                         </div>
                     </div>
                     <div class="card bg-web-primary text-light mb-3">
                         <div class="card-body">
-                            2. Huruf S dibuat melilit tanda panah : menu SPINET dapat melingkupi dan membantu berbagai media
-                            dan tools pembelajaran fisika yang dibutuhkan
-                        </div>
-                    </div>
-                    <div class="card bg-web-primary text-light mb-3">
-                        <div class="card-body">
-                            3. Huruf I dengan tanda titik diatasnya berbentuk bola dunia : SPINET merupakan media berbasis
-                            website dan bersifat global sehingga dapat diakses siapa saja dan dimana saja
-                        </div>
-                    </div>
-                    <div class="card bg-web-primary text-light mb-3">
-                        <div class="card-body">
-                            4. Tulisan desain SPINET didesain sedemikian rupa sehingga tidak terkait dengan produk dan media
-                            lain missal televisi NET (NET Media) karena dibagian bawah sudah dijabarkan bahwa SPINET = Smart
-                            Physics Interactive Educational Tools sehingga SPINET berdiri sendiri dan tidak terkait dengan
-                            yang lainnya
-                        </div>
-                    </div>
-                    <div class="card bg-web-primary text-light mb-3">
-                        <div class="card-body">
-                            5. Desain LOGO ini belum pernah ada sebelumnya sehingga hak cipta LOGO milik kita.
+                            @php
+                                $misi = $setting->where('title', 'Misi')->first();
+                            @endphp
+                            <h4 class="fw-bold">Misi</h4>
+                            {{ $misi->description }}
                         </div>
                     </div>
                 </div>

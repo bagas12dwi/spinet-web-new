@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\KontakController;
+use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ModulController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,26 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('users.screens.dashboard.index');
-})->name('home');
+Route::get('/', [DashboardController::class, 'index'])->name('home');
 
-Route::get('/modul', function () {
-    return view('users.screens.modul.index');
-})->name('modul');
+Route::get('/modul', [ModulController::class, 'index'])->name('modul');
 
-Route::get('/materi', function () {
-    return view('users.screens.materi.index');
-})->name('materi');
+Route::get('/materi', [MateriController::class, 'index'])->name('materi');
 
 Route::get('/media', [MediaController::class, 'index'])->name('media');
 Route::get('/detail-media/{medium}', [MediaController::class, 'show'])->name('detail');
 
 Route::get('/tentang', [AboutController::class, 'index'])->name('tentang');
 
-Route::get('/kontak', function () {
-    return view('users.screens.kontak.index');
-})->name('kontak');
+Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 
 Route::get('/login', function () {
     return view('admin.auth.login');

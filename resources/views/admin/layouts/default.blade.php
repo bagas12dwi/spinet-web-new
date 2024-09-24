@@ -18,7 +18,7 @@
 
     <!-- App CSS -->
     <link id="theme-style" rel="stylesheet" href="{{ URL::asset('admin/assets/css/portal.css') }}">
-
+    @stack('style')
 </head>
 
 <body class="app">

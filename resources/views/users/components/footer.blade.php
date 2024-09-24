@@ -85,10 +85,16 @@
         <div class="row">
             <div class="col-4 col-md-4 mb-3">
                 <h5>Informasi Kontak</h5>
+                @php
+                    $no_telp = $setting->where('title', 'no telepon')->first();
+                    $email = $setting->where('title', 'email')->first();
+                @endphp
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">+1(7635) 2998383983</a>
+                    <li class="nav-item mb-2"><a href="#"
+                            class="nav-link p-0 text-light">{{ $no_telp->description }}</a>
                     </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">spinesa@support.com</a>
+                    <li class="nav-item mb-2"><a href="#"
+                            class="nav-link p-0 text-light">{{ $email->description }}</a>
                     </li>
                 </ul>
             </div>

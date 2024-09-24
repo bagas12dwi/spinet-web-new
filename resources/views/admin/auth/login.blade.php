@@ -45,7 +45,7 @@
                             </form>
 
                             <div class="auth-option text-center pt-5">No Account? Sign up <a class="text-link"
-                                    href="{{ route('login') }}">here</a>.</div>
+                                    href="{{ route('register') }}">here</a>.</div>
                             <div class="auth-option text-center pt-5"><a class="text-link" href="{{ route('home') }}">Back
                                     to Home</a>.</div>
                         </div><!--//auth-form-container-->

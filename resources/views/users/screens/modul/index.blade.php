@@ -35,48 +35,49 @@
                     <div class="col-6 align-self-end">
                         <h2 class="text-warning">Apasih Kelebihannya?</h2>
                     </div>
-                    <div class="col-6 justify-self-start">
-                        <div class="container bg-warning d-flex align-items-center justify-content-center card-kanan"
-                            style="height: 15em; border-radius: 0px 3em 3em 0px;-webkit-border-radius: 0px 3em 3em 0px;-moz-border-radius: 0px 3em 3em 0px;">
-                            <h5 class="fw-bold title-depan">Modul Ajar Sesuai Kurikulum</h5>
-                            <div class="title-belakang">
-                                <h5 class="fw-bold title-belakang">Modul Ajar Sesuai Kurikulum</h5>
-                                <p>Materi yang disajikan relevan dan sesuai dengan standar
-                                    pembelajaran, membantu mempersiapkan pelajaran dengan lebih efektif dan fokus.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row align-items-end me-5 mt-4">
-                    <div class="col-6">
-                        <div class="container bg-warning d-flex align-items-center justify-content-center card-kanan"
-                            style="height: 15em; border-radius: 3em 0em 0em 3em;-webkit-border-radius: 3em 0em 0em 3em;-moz-border-radius: 3em 0em 0em 3em;">
-                            <h5 class="fw-bold title-depan">Panduan Terstruktur</h5>
-                            <div class="title-belakang">
-                                <h5 class="fw-bold title-belakang">Panduan Terstruktur</h5>
-                                <p>Membantu dalam mengikuti proses pembelajaran secara bertahap dan sistematis, mempermudah
-                                    pemahaman dan penguasaan materi.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-6 justify-self-start">
-                        <div class="container bg-warning d-flex align-items-center justify-content-center card-kanan"
-                            style="height: 15em; border-radius: 0px 3em 3em 0px;-webkit-border-radius: 0px 3em 3em 0px;-moz-border-radius: 0px 3em 3em 0px;">
-                            <h5 class="fw-bold title-depan">Penerapkan konsep menarik</h5>
-                            <div class="title-belakang">
-                                <div class="title-belakang">
-                                    <h5 class="fw-bold title-belakang">Penerapkan konsep menarik</h5>
-                                    <p>Modul-modul ini juga menawarkan latihan interaktif yang memungkinkan peserta didik
-                                        untuk
-                                        mempraktikkan konsep-konsep fisika dengan cara yang menarik.</p>
+
+                    @forelse ($setting as $key => $item)
+                        @if ($key == 0)
+                            {{-- card 1 --}}
+                            <div class="col-6 justify-self-start">
+                                <div class="container bg-warning d-flex align-items-center justify-content-center card-kanan"
+                                    style="height: 15em; border-radius: 0px 3em 3em 0px;">
+                                    <h5 class="fw-bold title-depan">{{ $item->subtitle }}</h5>
+                                    <div class="title-belakang">
+                                        <h5 class="fw-bold title-belakang">{{ $item->subtitle }}</h5>
+                                        <p>{{ $item->description }}</p>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        @endif
+                    @empty
+                        <p class="text-center">Tidak ada data</p>
+                    @endforelse
+                </div>
+
+                <div class="row align-items-end me-5 mt-4">
+                    @forelse ($setting as $key => $item)
+                        @if ($key == 1 || $key == 2)
+                            {{-- card 2 or card 3 --}}
+                            <div class="col-6 justify-self-start">
+                                <div class="container bg-warning d-flex align-items-center justify-content-center card-kanan"
+                                    style="height: 15em; border-radius: {{ $key == 1 ? '3em 0em 0em 3em' : '0px 3em 3em 0px' }};">
+                                    <h5 class="fw-bold title-depan">{{ $item->subtitle }}</h5>
+                                    <div class="title-belakang">
+                                        <h5 class="fw-bold title-belakang">{{ $item->subtitle }}</h5>
+                                        <p>{{ $item->description }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @empty
+                        <p class="text-center">Tidak ada data</p>
+                    @endforelse
                 </div>
             </div>
         </div>
     </section>
+
     <section id="kontak" class="mb-4 bg-web-primary">
         <div class="container-fluid">
             <div class="row d-flex align-items-center">
@@ -95,9 +96,10 @@
     <section id="media" class="d-flex flex-column align-items-center justify-content-center" style="height: 90vh">
         <div class="container text-center">
             <h3 class="text-warning mb-3 fw-bold">
-                "Setiap modul kami dirancang dengan panduan langkah-demi-langkah, latihan interaktif yang seru, dan evaluasi
-                mendalam untuk memastikan Anda tidak hanya belajar, tetapi benar-benar memahami setiap konsep dengan
-                sempurna."
+                @php
+                    $quotes = $setting->where('title', 'quotes')->first();
+                @endphp
+                "{{ $quotes->description }}"
             </h3>
             <a href="#" class="btn btn-primary">Buka Menu Media</a>
         </div>

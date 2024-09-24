@@ -134,7 +134,7 @@
                             </div><!--//dropdown-menu-->
                         </div><!--//app-utility-item-->
                         <div class="app-utility-item">
-                            <a href="{{ route('admin.setting') }}" title="Settings">
+                            <a href="{{ route('admin.setting.index') }}" title="Settings">
                                 <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                                 <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-gear icon"
                                     fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -152,7 +152,8 @@
                                     src="{{ URL::asset('admin/assets/images/user.png') }}" alt="user profile"></a>
                             <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                                 <li><a class="dropdown-item" href="{{ route('admin.account') }}">Account</a></li>
-                                <li><a class="dropdown-item" href="{{ route('admin.setting') }}">Settings</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.setting.index') }}">Settings</a>
+                                </li>
                                 <li>
                                     <hr class="dropdown-divider">
                                 </li>

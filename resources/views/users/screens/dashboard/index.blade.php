@@ -180,58 +180,27 @@
         <div class="container">
             <h4 class="text-warning mb-4 fw-bold">Media Terbaru</h4>
             <div class="row justify-content-center">
-                <div class="col-3 col-md-3 col-sm-6">
-                    <div class="card card-shadow" style="height: 33em">
-                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                            <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold">PDF</div>
-                            <div class="text-center mb-3">
-                                <img src="{{ URL::asset('assets/img/media-terbaru.png') }}" class="img-fluid"
-                                    style="height: 20em" alt="">
+                @forelse ($media as $item)
+                    <div class="col-3 col-md-3 col-sm-6">
+                        <a href="{{ route('detail', $item->id) }}" class="nav-link">
+                            <div class="card card-shadow" style="height: 33em">
+                                <div class="card-body text-center d-flex flex-column justify-content-center">
+                                    <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold text-uppercase">
+                                        {{ $item->extension }}
+                                    </div>
+                                    <div class="text-center mb-2">
+                                        <img src="{{ URL::asset('storage/' . $item->thumbnails) }}" class="img-fluid"
+                                            style="height: 20em; object-fit: cover" alt="">
+                                    </div>
+                                    <h5 class="text-start fw-bold">{{ $item->title }}</h5>
+                                    <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
+                                </div>
                             </div>
-                            <p class="text-start">Kursus ini dirancang untuk memberikan dasar yang kuat dalam konsep-konsep
-                                fundamental.</p>
-                        </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-6">
-                    <div class="card card-shadow" style="height: 33em">
-                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                            <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold">PDF</div>
-                            <div class="text-center mb-3">
-                                <img src="{{ URL::asset('assets/img/media-terbaru.png') }}" class="img-fluid"
-                                    style="height: 20em" alt="">
-                            </div>
-                            <p class="text-start">Kursus ini dirancang untuk memberikan dasar yang kuat dalam konsep-konsep
-                                fundamental.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-6">
-                    <div class="card card-shadow" style="height: 33em">
-                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                            <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold">PDF</div>
-                            <div class="text-center mb-3">
-                                <img src="{{ URL::asset('assets/img/media-terbaru.png') }}" class="img-fluid"
-                                    style="height: 20em" alt="">
-                            </div>
-                            <p class="text-start">Kursus ini dirancang untuk memberikan dasar yang kuat dalam konsep-konsep
-                                fundamental.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-6">
-                    <div class="card card-shadow" style="height: 33em">
-                        <div class="card-body text-center d-flex flex-column justify-content-center">
-                            <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold">PDF</div>
-                            <div class="text-center mb-3">
-                                <img src="{{ URL::asset('assets/img/media-terbaru.png') }}" class="img-fluid"
-                                    style="height: 20em" alt="">
-                            </div>
-                            <p class="text-start">Kursus ini dirancang untuk memberikan dasar yang kuat dalam konsep-konsep
-                                fundamental.</p>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    <h4 class="text-center fw-bold my-5">Tidak ada media</h4>
+                @endforelse
             </div>
             <div class="text-center">
                 <a href="#" class="btn btn-primary my-5">Temukan Lebih Banyak</a>

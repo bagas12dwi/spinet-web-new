@@ -1,5 +1,6 @@
 @extends('users.layouts.layout')
 
+
 @section('konten')
     <section id="banner">
         <div class="container-fluid">
@@ -54,6 +55,12 @@
                         <button class="btn btn-primary w-100">Send</button>
                     </form>
                     <div class="kontak d-flex justify-content-between gap-3 mb-3">
+                        @php
+                            $no_telp = $setting->where('title', 'no telepon')->first();
+                            $email = $setting->where('title', 'email')->first();
+                            $alamat = $setting->where('title', 'alamat')->first();
+                            $map = $setting->where('title', 'map')->first();
+                        @endphp
                         <div class="d-flex align-items-center gap-2">
                             <div class="logo">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
@@ -64,7 +71,7 @@
                             </div>
                             <div class="d-flex flex-column">
                                 <h6>No. Telepon</h6>
-                                <p class="mb-0">082232342342</p>
+                                <p class="mb-0">{{ $no_telp->description }}</p>
                             </div>
                         </div>
 
@@ -78,7 +85,7 @@
                             </div>
                             <div class="d-flex flex-column">
                                 <h6>Email</h6>
-                                <p class="mb-0">spinet@mail.com</p>
+                                <p class="mb-0">{{ $email->description }}</p>
                             </div>
                         </div>
                     </div>
@@ -92,16 +99,12 @@
                         </div>
                         <div class="d-flex flex-column">
                             <h6>Alamat</h6>
-                            <p class="mb-0">Jl. Raya Kampus Unesa, Lidah Wetan, Kec. Lakarsantri, Surabaya, Jawa
-                                Timur 60213</p>
+                            <p class="mb-0">{{ $alamat->description }}</p>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-md-6 col-sm-12">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126639.06773439476!2d112.63102513765062!3d-7.300876079534269!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd7fb7a806b1ce1%3A0x571f4546e898d79a!2sUniversitas%20Negeri%20Surabaya!5e0!3m2!1sen!2sid!4v1725745685913!5m2!1sen!2sid"
-                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    {!! $map->description !!}
                 </div>
             </div>
         </div>
@@ -113,270 +116,111 @@
                 Pertanyaan yang sering diajukan
             </h3>
             <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Bagaimana cara mendaftar dan memulai kursus di Spinesa?
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the first item's accordion body.</strong> It is shown by default, until the
-                            collapse plugin adds the appropriate classes that we use to style each element. These classes
-                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
-                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
-                            does limit overflow.
+                @foreach ($question as $index => $faqItem)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $index }}">
+                            <button class="accordion-button {{ $index == 0 ? '' : 'collapsed' }}" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapse{{ $index }}"
+                                aria-expanded="{{ $index == 0 ? 'true' : 'false' }}"
+                                aria-controls="collapse{{ $index }}">
+                                {{ $faqItem->question }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $index }}"
+                            class="accordion-collapse collapse {{ $index == 0 ? 'show' : '' }}"
+                            aria-labelledby="heading{{ $index }}" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                {{ $faqItem->answer }}
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            Apakah saya bisa mengakses kursus di Spinesa dari berbagai perangkat?
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the second item's accordion body.</strong> It is hidden by default, until the
-                            collapse plugin adds the appropriate classes that we use to style each element. These classes
-                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
-                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
-                            does limit overflow.
-                        </div>
-                    </div>
-                </div>
-                <div class="accordion-item">
-                    <h2 class="accordion-header">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Bagaimana cara berinteraksi dengan instruktur dan peserta lain selama kursus?
-                        </button>
-                    </h2>
-                    <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
-                            <strong>This is the third item's accordion body.</strong> It is hidden by default, until the
-                            collapse plugin adds the appropriate classes that we use to style each element. These classes
-                            control the overall appearance, as well as the showing and hiding via CSS transitions. You can
-                            modify any of this with custom CSS or overriding our default variables. It's also worth noting
-                            that just about any HTML can go within the <code>.accordion-body</code>, though the transition
-                            does limit overflow.
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <section id="diskusi" class="my-5">
         <div class="container">
-            <h3 class="fw-bold text-warning">
-                Forum Diskusi
-            </h3>
-            <h6 class="fw-semibold mb-4">Anda dapat menemukan jawaban atas pertanyaan yang sering ditanyakan, berdiskusi
-                dengan
-                komunitas, serta mendapatkan solusi terkait penggunaan SPINET.</h6>
+            <h3 class="fw-bold text-warning">Forum Diskusi</h3>
+            <h6 class="fw-semibold mb-4">
+                Anda dapat menemukan jawaban atas pertanyaan yang sering ditanyakan, berdiskusi dengan komunitas,
+                serta mendapatkan solusi terkait penggunaan SPINET.
+            </h6>
+
             <div class="container mb-5 card-shadow rounded-3">
                 <!-- Nav Tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link active" id="deskripsi-tab" data-bs-toggle="tab"
-                            data-bs-target="#deskripsi" type="button" role="tab" aria-controls="deskripsi"
-                            aria-selected="true">Diskusi 1</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                        <button class="nav-link" id="komentar-tab" data-bs-toggle="tab" data-bs-target="#komentar"
-                            type="button" role="tab" aria-controls="komentar" aria-selected="false">Diskusi
-                            2</button>
-                    </li>
+                    @foreach ($diskusi as $index => $d)
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link {{ $loop->first ? 'active' : '' }}"
+                                id="diskusi-tab-{{ $index }}" data-bs-toggle="tab"
+                                data-bs-target="#diskusi-{{ $index }}" type="button" role="tab"
+                                aria-controls="diskusi-{{ $index }}"
+                                aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                                {{ $d->title }}
+                            </button>
+                        </li>
+                    @endforeach
                 </ul>
 
                 <!-- Tab Content -->
                 <div class="tab-content p-5" id="myTabContent">
-                    <div class="tab-pane fade show active" id="deskripsi" role="tabpanel"
-                        aria-labelledby="deskripsi-tab">
-                        <form action="" method="post" class="mb-3">
-                            @csrf
-                            <div class="mb-3">
-                                <textarea class="form-control" name="komenter" id="komenter" rows="3"></textarea>
-                            </div>
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-primary">Kirim</button>
-                            </div>
-                        </form>
-                        <div class="card mb-3 border border-0 ">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                            <form action="" method="post">
+                    @foreach ($diskusi as $index => $d)
+                        <div class="tab-pane fade {{ $loop->first ? 'show active' : '' }}"
+                            id="diskusi-{{ $index }}" role="tabpanel"
+                            aria-labelledby="diskusi-tab-{{ $index }}">
+
+                            <!-- Form for posting a new comment -->
+                            {{-- <form action="{{ route('comment.store') }}" method="post" class="mb-3"> --}}
+                            <form action="#" method="post" class="mb-3">
                                 @csrf
                                 <div class="mb-3">
-                                    <textarea class="form-control" name="reply-comment" id="reply-comment" rows="1"></textarea>
+                                    <textarea class="form-control" name="komenter" id="komenter" rows="3"></textarea>
                                 </div>
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-primary">Kirim</button>
                                 </div>
                             </form>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="tab-pane fade" id="komentar" role="tabpanel" aria-labelledby="komentar-tab">
-                        <form action="" method="post" class="mb-3">
-                            @csrf
-                            <div class="mb-3">
-                                <textarea class="form-control" name="komenter" id="komenter" rows="3"></textarea>
-                            </div>
-                            <div class="text-end">
-                                <button type="submit" class="btn btn-primary">Kirim</button>
-                            </div>
-                        </form>
-                        <div class="card mb-3 border border-0 ">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                            <form action="" method="post">
-                                @csrf
-                                <div class="mb-3">
-                                    <textarea class="form-control" name="reply-comment" id="reply-comment" rows="1"></textarea>
+
+                            <!-- Display comments for this discussion -->
+                            @foreach ($comment->where('discussion_id', $d->id) as $c)
+                                <div class="card mb-3 border border-0">
+                                    <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                        <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
+                                            alt="">
+                                        <h5 class="card-title">{{ $c->user->name }}</h5>
+                                        <p class="text-muted">{{ $c->created_at->format('d F Y') }}</p>
+                                        <p class="card-text">{{ $c->content }}</p>
+                                    </div>
+
+                                    <!-- Form for replying to this comment -->
+                                    {{-- <form action="{{ route('comment.reply', $c->id) }}" method="post"> --}}
+                                    <form action="#" method="post">
+                                        @csrf
+                                        <div class="mb-3">
+                                            <textarea class="form-control" name="reply-comment" id="reply-comment" rows="1"></textarea>
+                                        </div>
+                                        <div class="text-end">
+                                            <button type="submit" class="btn btn-primary">Kirim</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="text-end">
-                                    <button type="submit" class="btn btn-primary">Kirim</button>
-                                </div>
-                            </form>
+
+                                <!-- Display replies to this comment -->
+                                @foreach ($comment->where('parent_id', $c->id) as $reply)
+                                    <div class="card mb-3 border border-0" style="margin-left: 10em">
+                                        <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
+                                            <img src="{{ URL::asset('assets/img/profile.png') }}"
+                                                class="rounded-circle mb-2" alt="">
+                                            <h5 class="card-title">{{ $reply->user->name }}</h5>
+                                            <p class="text-muted">{{ $reply->created_at->format('d F Y') }}</p>
+                                            <p class="card-text">{{ $reply->content }}</p>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            @endforeach
                         </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="card mb-3 border border-0 " style="margin-left: 10em">
-                            <div class="card-body bg-info bg-opacity-25 rounded-3 mb-3">
-                                <img src="{{ URL::asset('assets/img/profile.png') }}" class="rounded-circle mb-2"
-                                    alt="">
-                                <h5 class="card-title">John Doe</h5>
-                                <p class="text-muted">10 Agustus 2024</p>
-                                <p class="card-text">With supporting text below as a natural lead-in to additional content.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
