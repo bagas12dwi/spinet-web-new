@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MateriController;
@@ -38,6 +39,10 @@ Route::get('/login', function () {
 Route::get('/register', function () {
     return view('admin.auth.register');
 })->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('postRegister');
+Route::post('/login', [AuthController::class, 'login'])->name('postLogin');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
 Route::get('/404', function () {
     return view('admin.auth.404');
 })->name('404');

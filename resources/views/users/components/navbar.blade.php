@@ -39,9 +39,33 @@
                     <a class="nav-link {{ url()->current() == route('kontak') ? 'active-nav' : '' }}"
                         href="{{ route('kontak') }}">Kontak</a>
                 </li>
-                <li class="nav-item">
-                    <a class="btn btn-primary" href="{{ route('login') }}">Masuk</a>
-                </li>
+                @auth
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <img src="{{ URL::asset('storage/' . auth()->user()->img_path) }}"
+                                style="width: 2em; height: 2em; object-fit: cover" class="rounded rounded-circle"
+                                alt="">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profile</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                @endauth
+                @guest
+                    <li class="nav-item">
+                        <a class="btn btn-primary" href="{{ route('login') }}">Masuk</a>
+                    </li>
+                @endguest
             </ul>
         </div>
     </div>
