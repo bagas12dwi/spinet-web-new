@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Google\AuthController as GoogleAuthController;
 use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MateriController;
 use App\Http\Controllers\MediaController;
@@ -42,6 +43,9 @@ Route::get('/register', function () {
 Route::post('/register', [AuthController::class, 'register'])->name('postRegister');
 Route::post('/login', [AuthController::class, 'login'])->name('postLogin');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+Route::get('/auth/{provider}', [GoogleAuthController::class, 'redirectToProvider']);
+Route::get('/auth/{provider}/callback', [GoogleAuthController::class, 'handleProvideCallback']);
 
 Route::get('/404', function () {
     return view('admin.auth.404');
