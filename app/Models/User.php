@@ -43,4 +43,13 @@ class User extends Authenticatable
     {
         return $this->hasMany(SocialAccount::class);
     }
+
+    public function likeCommentDiscussion()
+    {
+        return $this->hasMany(LikeCommentDiscussion::class);
+    }
+    public function likeCommentMedia()
+    {
+        return $this->hasMany(LikeCommentMedia::class);
+    }
 }

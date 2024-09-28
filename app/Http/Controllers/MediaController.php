@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Media;
 use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
+use App\Models\CommentMedia;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class MediaController extends Controller
@@ -46,6 +48,40 @@ class MediaController extends Controller
             'title' => 'Detail Media',
             'media' => $medium
         ]);
+    }
+
+    public function storeComment(Request $request, $mediaId)
+    {
+        $request->validate([
+            'comment' => 'required|string|max:1000',
+        ]);
+
+        CommentMedia::create([
+            'comment' => $request->comment,
+            'media_id' => $mediaId,
+            'user_id' => auth()->id(), // Assuming user is authenticated
+            'parent_id' => null,
+        ]);
+
+        return redirect()->back()->with('success', 'Comment posted successfully.');
+    }
+
+    public function storeReply(Request $request, $commentId)
+    {
+        $request->validate([
+            'reply-comment' => 'required|string|max:1000',
+        ]);
+
+        $comment = CommentMedia::findOrFail($commentId);
+
+        CommentMedia::create([
+            'comment' => $request->{'reply-comment'},
+            'media_id' => $comment->media_id,
+            'user_id' => auth()->id(),
+            'parent_id' => $commentId,
+        ]);
+
+        return redirect()->back()->with('success', 'Reply posted successfully.');
     }
 
     /**

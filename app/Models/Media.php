@@ -9,4 +9,9 @@ class Media extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
+
+    public function komentar()
+    {
+        return $this->hasMany(CommentMedia::class);
+    }
 }

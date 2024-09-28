@@ -31,4 +31,9 @@ class CommentDiscussion extends Model
     {
         return $this->belongsTo(CommentDiscussion::class, 'parent_id');
     }
+
+    public function likes()
+    {
+        return $this->hasMany(LikeCommentDiscussion::class);
+    }
 }

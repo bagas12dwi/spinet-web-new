@@ -110,6 +110,7 @@
                                             style="height: 20em; object-fit: cover" alt="">
                                     </div>
                                     <h5 class="text-start fw-bold">{{ $item->title }}</h5>
+                                    <p class="text-start fst-italic">{{ $item->created_at->format('d F Y') }}</p>
                                     <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
                                 </div>
                             </div>
