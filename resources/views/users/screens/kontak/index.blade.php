@@ -41,7 +41,7 @@
                     <p class="fw-400 mb-4">Anda dapat mengisi formulir kontak dibawah ini, dan kami akan menghubungi anda
                         secepat
                         mungkin.</p>
-                    <form action="" method="post" class="mb-3">
+                    <form action="{{ route('feedback') }}" method="post" class="mb-3">
                         @csrf
                         <div class="mb-3">
                             <label for="name" class="form-label">Nama Lengkap</label>
@@ -59,7 +59,7 @@
                             <label for="message" class="form-label">Pesan Anda</label>
                             <textarea class="form-control" name="message" id="message" rows="3"></textarea>
                         </div>
-                        <button class="btn btn-primary w-100">Send</button>
+                        <button class="btn btn-primary w-100" type="submit">Send</button>
                     </form>
                     <div class="kontak d-flex justify-content-between gap-3 mb-3">
                         @php

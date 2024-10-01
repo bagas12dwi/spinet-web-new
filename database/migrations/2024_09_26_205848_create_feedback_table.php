@@ -18,7 +18,9 @@ return new class extends Migration
                 ->constrained('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
+            $table->string('email')->nullable();
             $table->text('message')->nullable();
+            $table->boolean('is_showing')->nullable()->default(false);
             $table->timestamps();
         });
     }

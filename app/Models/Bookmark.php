@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Feedback extends Model
+class Bookmark extends Model
 {
     use HasFactory;
     protected $guarded = ['id'];
@@ -13,5 +13,10 @@ class Feedback extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function media()
+    {
+        return $this->belongsTo(Media::class);
     }
 }

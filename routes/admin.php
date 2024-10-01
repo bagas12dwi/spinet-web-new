@@ -23,7 +23,9 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('/faq', QuestionController::class)->names('faq');
     Route::resource('/diskusi', DiscussionController::class)->names('diskusi');
     Route::resource('/pengguna', UserController::class)->names('pengguna');
-    // Route::resource('/admin', FeedbackController::class)->names('feedback');
+    Route::resource('/feedback', FeedbackController::class)->names('feedback');
+    Route::post('/feedback/toggle/{id}', [FeedbackController::class, 'toggleVisibility'])->name('feedback.toggle');
+
 
     Route::get('/account', function () {
         return view('admin.pages.account');

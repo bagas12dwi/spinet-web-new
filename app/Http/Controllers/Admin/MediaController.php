@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Media;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -14,7 +15,7 @@ class MediaController extends Controller
      */
     public function index()
     {
-        $media = Media::where('type', 'media')->orderBy('id', 'DESC')->paginate(10);
+        $media = Media::where('type', 'materi')->orderBy('id', 'DESC')->paginate(10);
         return view('admin.pages.media.index', [
             'title' => 'Media',
             'media' => $media
@@ -47,9 +48,20 @@ class MediaController extends Controller
         $validatedData['document_path'] = $request->file('document_path')->store('media/media');
 
         $validatedData['extension'] = $request->file('document_path')->getClientOriginalExtension();
-        $validatedData['type'] = 'media';
+        $validatedData['type'] = 'materi';
 
-        Media::create($validatedData);
+        try {
+            $media = Media::create($validatedData);
+        } catch (\Throwable $th) {
+            return;
+        }
+
+        Notification::create([
+            'title' => $media->type,
+            'description' => 'Ada ' . $media->type . ' baru nih ! Selamat belajar ~',
+            'redirect_url' => '/detail-media/' . $media->id
+        ]);
+
         return redirect()->route('admin.media.index')->with('success', 'Media berhasil ditambahkan!');
     }
 

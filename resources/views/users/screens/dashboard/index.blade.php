@@ -212,50 +212,18 @@
         <div class="container-fluid">
             <h4 class="text-warning mb-4 fw-bold">Umpan Balik Pelanggan Kami</h4>
             <div class="row justify-content-center">
-                <div class="col-3 col-md-3 col-sm-12">
-                    <div class="card card-shadow" style="height: 13em">
-                        <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
-                            <img src="{{ URL::asset('assets/img/profile.png') }}" class="mb-2"
-                                style="width: 3em; height: 3em; object-fit: cover" alt="">
-                            <h6 class="fw-bold text-start mb-4">Floyd Medes</h6>
-                            <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-                                molestiae.</p>
+                @foreach ($feedback as $feedback)
+                    <div class="col-3 col-md-3 col-sm-12">
+                        <div class="card card-shadow" style="height: 13em">
+                            <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
+                                <img src="{{ URL::asset('storage/profile/default.png') }}" class="mb-2"
+                                    style="width: 3em; height: 3em; object-fit: cover" alt="">
+                                <h6 class="fw-bold text-start mb-4">{{ $feedback->name }}</h6>
+                                <p class="text-start">{{ $feedback->message }}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-12">
-                    <div class="card card-shadow" style="height: 13em">
-                        <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
-                            <img src="{{ URL::asset('assets/img/profile.png') }}" class="mb-2"
-                                style="width: 3em; height: 3em; object-fit: cover" alt="">
-                            <h6 class="fw-bold text-start mb-4">Floyd Medes</h6>
-                            <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-                                molestiae.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-12">
-                    <div class="card card-shadow" style="height: 13em">
-                        <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
-                            <img src="{{ URL::asset('assets/img/profile.png') }}" class="mb-2"
-                                style="width: 3em; height: 3em; object-fit: cover" alt="">
-                            <h6 class="fw-bold text-start mb-4">Floyd Medes</h6>
-                            <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-                                molestiae.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-3 col-sm-12">
-                    <div class="card card-shadow" style="height: 13em">
-                        <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
-                            <img src="{{ URL::asset('assets/img/profile.png') }}" class="mb-2"
-                                style="width: 3em; height: 3em; object-fit: cover" alt="">
-                            <h6 class="fw-bold text-start mb-4">Floyd Medes</h6>
-                            <p class="text-start">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem,
-                                molestiae.</p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

@@ -6,6 +6,7 @@ use App\Models\Media;
 use App\Http\Requests\StoreMediaRequest;
 use App\Http\Requests\UpdateMediaRequest;
 use App\Models\CommentMedia;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -74,12 +75,26 @@ class MediaController extends Controller
 
         $comment = CommentMedia::findOrFail($commentId);
 
-        CommentMedia::create([
-            'comment' => $request->{'reply-comment'},
-            'media_id' => $comment->media_id,
-            'user_id' => auth()->id(),
-            'parent_id' => $commentId,
-        ]);
+        try {
+            CommentMedia::create([
+                'comment' => $request->{'reply-comment'},
+                'media_id' => $comment->media_id,
+                'user_id' => auth()->id(),
+                'parent_id' => $commentId,
+            ]);
+        } catch (\Throwable $th) {
+            return;
+        }
+
+        if (auth()->user()->id != $comment->user_id) {
+            Notification::create([
+                'user_id' => $comment->user_id,
+                'title' => 'Komentar',
+                'description' => 'Komentar anda dibalas oleh ' . $comment->user->name,
+                'redirect_url' => '/detail-media/' . $comment->media_id
+            ]);
+        }
+
 
         return redirect()->back()->with('success', 'Reply posted successfully.');
     }

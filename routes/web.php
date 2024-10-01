@@ -31,17 +31,21 @@ Route::get('/modul', [ModulController::class, 'index'])->name('modul');
 Route::get('/materi', [MateriController::class, 'index'])->name('materi');
 
 Route::get('/media', [MediaController::class, 'index'])->name('media');
-Route::get('/detail-media/{medium}', [MediaController::class, 'show'])->name('detail');
-Route::post('/media/{mediaId}/comment', [MediaController::class, 'storeComment'])->name('mediaComment.store');
-Route::post('/media/comment/{commentId}/reply', [MediaController::class, 'storeReply'])->name('mediaComment.reply');
-Route::post('/media/{comment}/like', [LikeCommentMediaController::class, 'likeComment'])->name('media.like');
+Route::group(['middleware' => ['auth', 'role:user']], function () {
+
+    Route::get('/detail-media/{medium}', [MediaController::class, 'show'])->name('detail');
+    Route::post('/media/{mediaId}/comment', [MediaController::class, 'storeComment'])->name('mediaComment.store');
+    Route::post('/media/comment/{commentId}/reply', [MediaController::class, 'storeReply'])->name('mediaComment.reply');
+    Route::post('/media/{comment}/like', [LikeCommentMediaController::class, 'likeComment'])->name('media.like');
+    Route::post('/kontak/feedback', [KontakController::class, 'sendMail'])->name('feedback');
+    Route::post('/diskusi/{discussion}/comment', [KontakController::class, 'storeComment'])->name('diskusiComment.store');
+    Route::post('/diskusi/comment/{comment}/reply', [KontakController::class, 'storeReply'])->name('diskusiComment.reply');
+    Route::post('/diskusi/{comment}/like', [LikeCommentDiscussionController::class, 'likeComment'])->name('diskusi.like');
+});
 
 Route::get('/tentang', [AboutController::class, 'index'])->name('tentang');
 
 Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
-Route::post('/diskusi/{discussion}/comment', [KontakController::class, 'storeComment'])->name('diskusiComment.store');
-Route::post('/diskusi/comment/{comment}/reply', [KontakController::class, 'storeReply'])->name('diskusiComment.reply');
-Route::post('/diskusi/{comment}/like', [LikeCommentDiscussionController::class, 'likeComment'])->name('diskusi.like');
 
 
 

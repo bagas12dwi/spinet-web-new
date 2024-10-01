@@ -13,7 +13,25 @@ class FeedbackController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.pages.feedback.index', [
+            'title' => 'Feedback',
+            'feedback' => Feedback::with('user')->orderBy('id', 'DESC')->orderBy('is_showing', 'DESC')->paginate(10)
+        ]);
+    }
+
+    public function toggleVisibility($id)
+    {
+        // Find the feedback by ID
+        $feedback = Feedback::findOrFail($id);
+
+        // Toggle the is_showing value
+        $feedback->is_showing = !$feedback->is_showing;
+
+        // Save the updated feedback
+        $feedback->save();
+
+        // Optionally, you can return a response, like redirecting back with a success message
+        return redirect()->route('admin.feedback.index')->with('success', 'Feedback visibility toggled successfully!');
     }
 
     /**

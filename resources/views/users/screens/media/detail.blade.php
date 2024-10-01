@@ -49,10 +49,10 @@
                 <div class="d-flex gap-2">
                     <a href="#" class="btn btn-warning text-uppercase">{{ $media->extension }}</a>
                     <a href="#" class="btn btn-warning text-capitalize">{{ $media->type }}</a>
-                    <a href="{{ URL::asset('storage/' . $media->document_path) }}" class="btn btn-primary"
-                        download>Unduh</a>
+                    <a href="{{ route('user.media.download', $media->id) }}" class="btn btn-primary">Unduh</a>
                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#contentModal"
-                        data-url="{{ URL::asset('storage/' . $media->document_path) }}">Lihat Online</button>
+                        data-url="{{ URL::asset('storage/' . $media->document_path) }}" data-media-id="{{ $media->id }}"
+                        data-user-id="{{ auth()->user()->id }}">Lihat Online</button>
                 </div>
             </div>
             <div class="modal fade" id="contentModal" tabindex="-1" aria-labelledby="contentModalLabel" aria-hidden="true">
@@ -206,6 +206,8 @@
             $('#contentModal').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget); // Button that triggered the modal
                 var url = button.data('url'); // Extract info from data-* attributes
+                var mediaId = button.data('media-id'); // Get media ID from data attribute
+                var userId = button.data('user-id'); // Get user ID from data attribute
 
                 // Clear previous content
                 $('#modalContent').empty();
@@ -233,6 +235,23 @@
                         }
                     } else {
                         $('#modalContent').append('<p>Unsupported file type.</p>');
+                    }
+                });
+
+                // Send AJAX request to store bookmark
+                $.ajax({
+                    url: '/user/bookmark/store', // Route to handle the bookmark storage
+                    method: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}', // Add CSRF token for security
+                        media_id: mediaId,
+                        user_id: userId,
+                    },
+                    success: function(response) {
+                        console.log(response.message); // Optionally display the success message
+                    },
+                    error: function(xhr) {
+                        console.error('Error storing bookmark:', xhr);
                     }
                 });
             });

@@ -14,4 +14,14 @@ class Media extends Model
     {
         return $this->hasMany(CommentMedia::class);
     }
+
+    public function bookmark()
+    {
+        return $this->hasMany(Bookmark::class);
+    }
+
+    public function download()
+    {
+        return $this->hasMany(Download::class);
+    }
 }
