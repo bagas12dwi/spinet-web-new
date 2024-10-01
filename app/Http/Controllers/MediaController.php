@@ -15,13 +15,65 @@ class MediaController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $media = Media::orderBy('id', 'DESC')->paginate(10);
-        return view('users.screens.media.index', [
-            'title' => 'Media',
-            'media' => $media
-        ]);
+        // Retrieve search query
+        $search = $request->input('search');
+        // Retrieve selected media types
+        $mediaTypes = $request->input('mediaTypes', []);
+        // Retrieve selected bahan ajar
+        $bahanAjar = $request->input('bahanAjar', []);
+        // Retrieve sort option
+        $sortMedia = $request->input('sort-media');
+
+        // Start building the query
+        $query = Media::query();
+
+        // Apply search filter if provided
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+
+        // Apply media type filters
+        if (!empty($mediaTypes)) {
+            // Map media types to corresponding extensions or types
+            $typeMappings = [
+                'kit' => ['jpg', 'jpeg', 'png', 'pdf'],
+                'video' => ['mp4'],
+                'audio' => ['mp3'],
+                'modul' => ['modul'], // Assuming these are stored as 'modul' in database
+                'materi' => ['materi'], // Assuming these are stored as 'materi' in database
+            ];
+
+            $query->where(function ($subQuery) use ($mediaTypes, $typeMappings) {
+                foreach ($mediaTypes as $type) {
+                    if (isset($typeMappings[$type])) {
+                        $subQuery->orWhereIn('type', $typeMappings[$type]);
+                    }
+                }
+            });
+        }
+
+        // Apply bahan ajar filters
+        if (!empty($bahanAjar)) {
+            $query->where(function ($subQuery) use ($bahanAjar) {
+                foreach ($bahanAjar as $bahan) {
+                    $subQuery->orWhere('type', $bahan);
+                }
+            });
+        }
+
+        // Apply sorting
+        if ($sortMedia == 'latest') {
+            $query->orderBy('created_at', 'desc');
+        } elseif ($sortMedia == 'oldest') {
+            $query->orderBy('created_at', 'asc');
+        }
+
+        // Execute the query and paginate results
+        $media = $query->paginate(10); // Change 10 to however many items you want per page
+
+        return view('users.screens.media.index', compact('media'));
     }
 
     /**

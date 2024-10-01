@@ -2,9 +2,11 @@
 
 @section('konten')
     <section id="banner">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="container p-4 ">
-                <h2 class="text-primary mb-5"><span class="text-warning">Selamat Datang Di</span> Menu Media kami! </h2>
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+            <div class="container p-4">
+                <h2 class="text-primary mb-5">
+                    <span class="text-warning">Selamat Datang Di</span> Menu Media kami!
+                </h2>
                 <h5 class="text-primary mb-3">
                     Di sini anda akan menemukan berbagai sumber daya multimedia yang dirancang untuk dapat memberikan
                     informasi yang mendalam dan pengalaman pembelajaran yang menarik. Jelajahi sub-menu berikut untuk
@@ -12,93 +14,91 @@
                 </h5>
                 <a href="#media" class="btn btn-primary">Temukan Lebih Banyak</a>
             </div>
-            <img src="{{ URL::asset('assets/img/banner.png') }}" alt="Banner">
+            <img src="{{ URL::asset('assets/img/banner.png') }}" alt="Banner" class="img-fluid">
         </div>
-        <div class="container-fluid bg-web-primary mb-3" style="height: 20vh"></div>
+        <div class="container-fluid bg-web-primary mb-3" style="height: 20vh;"></div>
     </section>
 
-    <section id="filter" class="mb-4">
-        <div class="container">
-            <div class="row d-flex mb-3">
-                <div class="col-9">
-                    <div class="d-flex gap-2 align-items-center">
-                        <div class="mb-0">
-                            <input type="emaitextl" class="form-control" id="exampleFormControlInput1"
-                                placeholder="Judul Media" style="width: 20em">
+    <form method="GET" action="{{ route('media') }}">
+        <section id="filter" class="mb-4">
+            <div class="container">
+                <div class="row d-flex mb-3">
+                    <div class="col-12 col-md-9">
+                        <div class="d-flex gap-2 align-items-center flex-wrap">
+                            <input type="text" class="form-control mb-2" name="search" placeholder="Judul Media"
+                                style="width: 100%;" value="{{ request('search') }}">
+                            <button class="btn btn-primary">Cari Media</button>
+                            <p class="mb-0">Hasil Pencarian</p>
                         </div>
-                        <button class="btn btn-primary">Cari Media</button>
-                        <p class="mb-0">Hasil Pencarian</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card p-0">
+                            <div class="card-header fw-bold bg-warning">Pilih Media</div>
+                            <div class="card-body">
+                                @foreach (['KIT', 'Video', 'Audio'] as $mediaType)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="mediaTypes[]"
+                                            value="{{ strtolower($mediaType) }}" id="media-{{ $loop->index }}"
+                                            {{ in_array(strtolower($mediaType), request('mediaTypes', [])) ? 'checked' : '' }}>
+                                        <label class="form-check-label"
+                                            for="media-{{ $loop->index }}">{{ $mediaType }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card p-0">
+                            <div class="card-header fw-bold bg-warning">Bahan Ajar</div>
+                            <div class="card-body">
+                                @foreach (['Modul', 'Materi'] as $bahanAjar)
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="bahanAjar[]"
+                                            value="{{ strtolower($bahanAjar) }}" id="bahan-{{ $loop->index }}"
+                                            {{ in_array(strtolower($bahanAjar), request('bahanAjar', [])) ? 'checked' : '' }}>
+                                        <label class="form-check-label"
+                                            for="bahan-{{ $loop->index }}">{{ $bahanAjar }}</label>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-md-3 mb-3">
+                        <div class="card p-0">
+                            <div class="card-header fw-bold bg-warning">Urutkan Media</div>
+                            <div class="card-body">
+                                <select class="form-select" name="sort-media" id="sort-media" style="width: auto;"
+                                    onchange="this.form.submit()">
+                                    <option value="" selected>Semua</option>
+                                    <option value="latest" {{ request('sort-media') == 'latest' ? 'selected' : '' }}>
+                                        Terbaru</option>
+                                    <option value="oldest" {{ request('sort-media') == 'oldest' ? 'selected' : '' }}>
+                                        Terlama</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+        </section>
+    </form>
 
-            <div class="row">
-                <div class="card p-0" style="width: 10em;">
-                    <div class="card-header fw-bold bg-warning">
-                        Pilih Media
-                    </div>
-                    <div class="card-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Modul </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Materi </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> KIT </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Video </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Audio </label>
-                        </div>
-                    </div>
-                </div>
-                <div class="card p-0" style="width: 10em;">
-                    <div class="card-header fw-bold bg-warning">
-                        Bahan Ajar
-                    </div>
-                    <div class="card-body">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Modul </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="" />
-                            <label class="form-check-label" for=""> Materi </label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
+
 
     <section id="media" class="my-3">
         <div class="container">
-            <div class="d-flex flex-row justify-content-between">
-                <div class="container">
-                    <h4 class="text-warning mb-4 fw-bold">Media Terbaru</h4>
-                </div>
-                <div class="container">
-                    <div class="d-flex align-items-center gap-2 justify-content-end">
-                        <label for="" class="form-label m-0">Urutkan Media</label>
-                        <select class="form-select form-select" name="" id="" style="width: 15em">
-                            <option selected>Semua</option>
-                            <option value="">Terbaru</option>
-                            <option value="">Terlama</option>
-                        </select>
-                    </div>
-                </div>
+            <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+                <h4 class="text-warning fw-bold">Media Terbaru</h4>
             </div>
             <div class="row justify-content-center">
                 @forelse ($media as $item)
-                    <div class="col-3 col-md-3 col-sm-6">
+                    <div class="col-12 col-sm-6 col-md-4 mb-4">
                         <a href="{{ route('detail', $item->id) }}" class="nav-link">
                             <div class="card card-shadow" style="height: 33em">
                                 <div class="card-body text-center d-flex flex-column justify-content-center">
@@ -137,8 +137,8 @@
                     @foreach ($media->links()->elements as $element)
                         {{-- "Three Dots" Separator --}}
                         @if (is_string($element))
-                            <li class="page-item disabled" aria-disabled="true"><a
-                                    class="page-link">{{ $element }}</a>
+                            <li class="page-item disabled" aria-disabled="true">
+                                <a class="page-link">{{ $element }}</a>
                             </li>
                         @endif
 
@@ -146,11 +146,13 @@
                         @if (is_array($element))
                             @foreach ($element as $page => $url)
                                 @if ($page == $media->currentPage())
-                                    <li class="page-item active" aria-current="page"><a
-                                            class="page-link">{{ $page }}</a></li>
+                                    <li class="page-item active" aria-current="page">
+                                        <a class="page-link">{{ $page }}</a>
+                                    </li>
                                 @else
-                                    <li class="page-item"><a class="page-link"
-                                            href="{{ $url }}">{{ $page }}</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ $url }}">{{ $page }}</a>
+                                    </li>
                                 @endif
                             @endforeach
                         @endif
