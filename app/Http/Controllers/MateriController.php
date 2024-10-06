@@ -13,6 +13,7 @@ class MateriController extends Controller
         $banner = WebSetting::where('name', 'Banner')->get();
 
         return view('users.screens.materi.index', [
+            'title' => 'Materi',
             'setting' => $setting,
             'banner' => $banner
         ]);

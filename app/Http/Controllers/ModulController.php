@@ -12,6 +12,7 @@ class ModulController extends Controller
         $setting = WebSetting::where('name', 'Modul')->get();
         $banner = WebSetting::where('name', 'Banner')->get();
         return view('users.screens.modul.index', [
+            'title' => 'Modul',
             'setting' => $setting,
             'banner' => $banner
         ]);

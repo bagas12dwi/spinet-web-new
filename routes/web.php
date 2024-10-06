@@ -50,10 +50,14 @@ Route::get('/kontak', [KontakController::class, 'index'])->name('kontak');
 
 
 Route::get('/login', function () {
-    return view('admin.auth.login');
+    return view('admin.auth.login', [
+        'title' => 'Auth'
+    ]);
 })->name('login');
 Route::get('/register', function () {
-    return view('admin.auth.register');
+    return view('admin.auth.register', [
+        'title' => 'Auth'
+    ]);
 })->name('register');
 Route::post('/register', [AuthController::class, 'register'])->name('postRegister');
 Route::post('/login', [AuthController::class, 'login'])->name('postLogin');

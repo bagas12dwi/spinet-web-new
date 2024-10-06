@@ -73,7 +73,8 @@ class MediaController extends Controller
         // Execute the query and paginate results
         $media = $query->paginate(10); // Change 10 to however many items you want per page
 
-        return view('users.screens.media.index', compact('media'));
+        $title = 'Media';
+        return view('users.screens.media.index', compact('media', 'title'));
     }
 
     /**

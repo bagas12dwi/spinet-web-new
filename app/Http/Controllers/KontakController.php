@@ -22,6 +22,7 @@ class KontakController extends Controller
         $diskusi = Discussion::all();
         $comment = CommentDiscussion::all();
         return view('users.screens.kontak.index', [
+            'title' => 'Kontak Kami',
             'setting' => $setting,
             'question' => $faq,
             'diskusi' => $diskusi,

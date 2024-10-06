@@ -11,7 +11,7 @@
 
         <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
             <ul class="app-menu list-unstyled accordion" id="menu-accordion">
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link {{ url()->current() == route('admin.dashboard') }}"
                         href="{{ route('admin.dashboard') }}">
@@ -25,7 +25,7 @@
                         </span>
                         <span class="nav-link-text">Overview</span>
                     </a><!--//nav-link-->
-                </li><!--//nav-item-->
+                </li><!--//nav-item--> --}}
                 <li class="nav-item">
                     <!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
                     <a class="nav-link {{ url()->current() == route('admin.media.index') ? 'active' : '' }}"

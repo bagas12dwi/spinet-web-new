@@ -18,6 +18,7 @@ class DashboardController extends Controller
         $pengunjung = Visitor::all();
 
         return view('users.screens.dashboard.index', [
+            'title' => 'Home',
             'media' => $media,
             'feedback' => $feedback,
             'setting' => $setting,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\WebSetting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class WebSettingController extends Controller
 {
@@ -76,6 +77,13 @@ class WebSettingController extends Controller
             'subtitle' => 'required',
             'description' => 'required'
         ]);
+
+        if ($request->file('img_path')) {
+            if ($request->oldImg) {
+                Storage::delete($setting->img_path);
+            }
+            $validatedData['img_path'] = $request->file('img_path')->store('banner');
+        }
 
         WebSetting::where('id', $setting->id)->update($validatedData);
 
