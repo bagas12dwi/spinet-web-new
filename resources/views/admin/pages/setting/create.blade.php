@@ -19,15 +19,6 @@
         <form action="{{ route('admin.setting.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label for="name" class="form-label">Halaman</label>
-                <input type="text" class="form-control" name="name" id="name" aria-describedby="helpHalaman"
-                    placeholder="Masukkan Halaman" />
-            </div>
-            <div class="mb-3">
-                <label for="title" class="form-label">Title</label>
-                <input type="text" class="form-control" name="title" id="title" placeholder="Masukkan Title" />
-            </div>
-            <div class="mb-3">
                 <label for="subtitle" class="form-label">Subtitle</label>
                 <input type="text" class="form-control" name="subtitle" id="subtitle" aria-describedby="helpSubtitle"
                     placeholder="Masukkan Subtitle" />
@@ -35,6 +26,12 @@
             <div class="mb-3">
                 <label for="description" class="form-label">Deskripsi</label>
                 <textarea class="form-control" name="description" id="description" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="img_path" class="form-label">Upload Gambar</label>
+                <input type="file" class="form-control" name="img_path" id="img_path" placeholder="Upload Gambar"
+                    aria-describedby="uploadGambar" />
+                <div id="uploadGambar" class="form-text">Tambahkan Gambar untuk banner</div>
             </div>
             <button class="btn btn-primary text-white">Simpan</button>
         </form>

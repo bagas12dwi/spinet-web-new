@@ -36,12 +36,13 @@ class WebSettingController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required',
-            'title' => 'required',
             'subtitle' => 'required',
             'description' => 'required',
         ]);
 
+        $validatedData['title'] = 'Banner';
+        $validatedData['name'] = 'Banner';
+        $validatedData['img_path'] = $request->file('img_path')->store('banner');
         WebSetting::create($validatedData);
 
         return redirect()->route('admin.setting.index')->with('success', 'Setting berhasil ditambahkan!');

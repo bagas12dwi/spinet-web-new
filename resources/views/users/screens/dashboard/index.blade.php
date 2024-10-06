@@ -1,8 +1,30 @@
 @extends('users.layouts.layout')
 
 @section('konten')
-    <section id="banner">
-        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+    <section id="banners">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($setting as $index => $set)
+                    <div class="carousel-item  @if ($loop->first) active @endif">
+                        <img src="{{ URL::asset('storage/' . $set->img_path) }}" class="d-block w-100" alt="Slide 1">
+                        <div class="carousel-caption">
+                            <h5>{{ $set->subtitle }}</h5>
+                            <p>{{ $set->description ?? 'Some placeholder content' }}</p>
+                            <a href="#terbaru" class="btn btn-primary">Temukan Lebih Banyak</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {{-- <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
             <div class="container p-4 text-center text-md-start">
                 <div class="title">
                     <h2 class="text-title text-primary mb-5">
@@ -17,7 +39,7 @@
                 <a href="#terbaru" class="btn btn-primary">Temukan Lebih Banyak</a>
             </div>
             <img src="{{ URL::asset('assets/img/banner.png') }}" class="img-fluid w-100 w-md-50" alt="Banner">
-        </div>
+        </div> --}}
         <div class="container-fluid bg-web-primary mb-3" style="height: 20vh"></div>
     </section>
 
@@ -34,7 +56,8 @@
                                     alt="">
                             </div>
                             <div class="fw-bold">Pengalaman Interaktif</div>
-                            <div class="hover-text">Temukan modul dan materi pembelajaran interaktif yang menjadikan belajar
+                            <div class="hover-text">Temukan modul dan materi pembelajaran interaktif yang menjadikan
+                                belajar
                                 fisika lebih menarik.</div>
                         </div>
                     </div>
@@ -104,7 +127,31 @@
                                 </div>
                                 <div class="card-back">
                                     <div class="card-body d-flex align-items-center justify-content-center text-center">
-                                        <p class="fw-bold">Deskripsi untuk {{ $icon }}</p>
+                                        @switch($icon)
+                                            @case('poster')
+                                                <p class="fw-bold">Poster sebagai media untuk menyampaikan topik fisika pada proses
+                                                    pembelajaran sehingga pembelajaran fisika lebih menarik.</p>
+                                            @break
+
+                                            @case('materi')
+                                                <p class="fw-bold">KIT dirancang untuk memberikan semua yang diperlukan dalam satu
+                                                    paket yang mudah diakses, dari panduan praktis hingga materi promosi.</p>
+                                            @break
+
+                                            @case('modul')
+                                                <p class="fw-bold">Adanya alat peraga fisika dapat memperdalam pemahaman dengan
+                                                    melalui pendekatan eksperimental yang mendukung proses belajar aktif.</p>
+                                            @break
+
+                                            @case('video')
+                                                <p class="fw-bold">fitur yang memungkinkan berinteraksi langsung dengan metode
+                                                    visual, video ini dirancang untuk memberikan pengalaman belajar.</p>
+                                            @break
+
+                                            @default
+                                                <p class="fw-bold">Deskripsi untuk {{ $icon }}</p>
+                                        @endswitch
+
                                     </div>
                                 </div>
                             </div>
@@ -147,8 +194,20 @@
         </div>
     </section>
 
+    <section id="pengunjung">
+        <div class="container text-center my-5">
+            <div class="card shadow-sm border-warning">
+                <div class="card-body">
+                    <h4 class="text-warning fw-bold mb-4">Pengunjung Website</h4>
+                    <!-- Tambahkan id ke elemen p untuk menghubungkan dengan JavaScript -->
+                    <p class="display-4 text-dark" id="visitorCount">0</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="review" class="mb-4">
-        <div class="container-fluid">
+        <div class="container">
             <h4 class="text-warning mb-4 fw-bold">Umpan Balik Pelanggan Kami</h4>
             <div class="row justify-content-center">
                 @foreach ($feedback as $feedback)
@@ -167,3 +226,28 @@
         </div>
     </section>
 @endsection
+
+@push('script')
+    <script>
+        // Fungsi untuk membuat animasi hitungan
+        function animateCounter(start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentCount = Math.floor(progress * (end - start) + start);
+                document.getElementById("visitorCount").textContent = currentCount;
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Angka akhir didapat dari jumlah pengunjung yang ada (diambil dari backend Laravel)
+        document.addEventListener("DOMContentLoaded", function() {
+            const visitorCount = {{ $pengunjung->count() }};
+            animateCounter(0, visitorCount, 2000); // 2000ms = 2 detik
+        });
+    </script>
+@endpush

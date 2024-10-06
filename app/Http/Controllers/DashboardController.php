@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Feedback;
 use App\Models\Media;
+use App\Models\Visitor;
+use App\Models\WebSetting;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -12,10 +14,14 @@ class DashboardController extends Controller
     {
         $media = Media::orderBy('id', 'DESC')->paginate(4);
         $feedback = Feedback::where('is_showing', true)->orderBy('id', 'DESC')->paginate(4);
+        $setting = WebSetting::where('name', 'Banner')->get();
+        $pengunjung = Visitor::all();
 
         return view('users.screens.dashboard.index', [
             'media' => $media,
-            'feedback' => $feedback
+            'feedback' => $feedback,
+            'setting' => $setting,
+            'pengunjung' => $pengunjung
         ]);
     }
 }

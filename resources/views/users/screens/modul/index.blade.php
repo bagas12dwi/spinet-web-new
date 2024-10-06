@@ -9,8 +9,30 @@
 @endpush
 
 @section('konten')
-    <section id="banner" class="py-5">
-        <div class="container-fluid">
+    <section id="banner" class="mb-5">
+        <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach ($banner as $index => $set)
+                    <div class="carousel-item  @if ($loop->first) active @endif">
+                        <img src="{{ URL::asset('storage/' . $set->img_path) }}" class="d-block w-100" alt="Slide 1">
+                        <div class="carousel-caption">
+                            <h5>{{ $set->subtitle }}</h5>
+                            <p>{{ $set->description ?? 'Some placeholder content' }}</p>
+                            <a href="{{ route('media') }}" class="btn btn-primary">Temukan Lebih Banyak</a>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        {{-- <div class="container-fluid">
             <div class="row d-flex align-items-center justify-content-center">
                 <div class="col-12 col-md-6 mb-4 mb-md-0 text-center text-md-start">
                     <div class="container p-4">
@@ -29,7 +51,7 @@
                     <img src="{{ URL::asset('assets/img/banner-modul.png') }}" alt="Banner" class="img-fluid">
                 </div>
             </div>
-        </div>
+        </div> --}}
     </section>
 
     <section id="kelebihan1" class="d-none d-lg-block">
