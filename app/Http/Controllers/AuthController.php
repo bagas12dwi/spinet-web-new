@@ -12,7 +12,7 @@ class AuthController extends Controller
     {
         if (auth()->user() != null) {
             if (auth()->user()->role == 'admin') {
-                return redirect()->intended('/dashboard');
+                return redirect()->route('admin.media.index');
             }
         } else {
             return view('admin.auth.login', [
@@ -40,7 +40,7 @@ class AuthController extends Controller
         if ($level == 'admin') {
             if (Auth::attempt($inputan)) {
                 $request->session()->regenerate();
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.media.index');
             }
             return back()->with('errorLogin', 'Login Gagal !');
         } else {
