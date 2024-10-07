@@ -92,7 +92,7 @@
         </div>
     </section>
 
-    <section id="kontak" class="mb-4 bg-web-primary">
+    <section id="kontak" class="mb-4 bg-web-primary py-5">
         <div class="container-fluid">
             <div class="row d-flex align-items-center">
                 <div class="col-12 col-md-6 text-center">
@@ -102,7 +102,20 @@
                     <h4 class="text-warning">Gabung sekarang dan rasakan sendiri bagaimana SPINET dapat mengubah cara anda
                         belajar dan mengajar Fisika.</h4>
                     <p>Jangan ragu untuk menghubungi, kami dengan senang hati siap membantu!</p>
-                    <button class="btn btn-primary">Kontak Kami</button>
+                    <button class="btn btn-primary mb-2">Kontak Kami</button>
+                    <div class="card card-shadow bg-web-primary ms-0" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="text-white">Total Pengunjung</h5>
+                            <div class="d-flex gap-2 align-items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+                                    class="bi bi-people-fill" viewBox="0 0 16 16">
+                                    <path
+                                        d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                                </svg>
+                                <p class="display-4 text-white fw-bold mb-0" id="visitorCount">0</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -190,18 +203,6 @@
             </div>
             <div class="text-center">
                 <a href="#" class="btn btn-primary my-5">Temukan Lebih Banyak</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="pengunjung">
-        <div class="container text-center my-5">
-            <div class="card shadow-sm border-warning">
-                <div class="card-body">
-                    <h4 class="text-warning fw-bold mb-4">Pengunjung Website</h4>
-                    <!-- Tambahkan id ke elemen p untuk menghubungkan dengan JavaScript -->
-                    <p class="display-4 text-dark" id="visitorCount">0</p>
-                </div>
             </div>
         </div>
     </section>
