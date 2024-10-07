@@ -175,57 +175,62 @@
         </div>
     </section>
 
-    <section id="terbaru" class="mb-4">
-        <div class="container">
-            <h4 class="text-warning mb-4 fw-bold">Media Terbaru</h4>
-            <div class="row justify-content-center">
-                @forelse ($media as $item)
-                    <div class="col-12 col-md-6 col-lg-3 mb-4">
-                        <a href="{{ route('detail', $item->id) }}" class="nav-link">
-                            <div class="card card-shadow" style="height: 33em">
-                                <div class="card-body text-center d-flex flex-column justify-content-center">
-                                    <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold text-uppercase">
-                                        {{ $item->extension }}
+    @if ($media->count() > 0)
+        <section id="terbaru" class="mb-4">
+            <div class="container">
+                <h4 class="text-warning mb-4 fw-bold">Media Terbaru</h4>
+                <div class="row justify-content-center">
+                    @forelse ($media as $item)
+                        <div class="col-12 col-md-6 col-lg-3 mb-4">
+                            <a href="{{ route('detail', $item->id) }}" class="nav-link">
+                                <div class="card card-shadow" style="height: 33em">
+                                    <div class="card-body text-center d-flex flex-column justify-content-center">
+                                        <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold text-uppercase">
+                                            {{ $item->extension }}
+                                        </div>
+                                        <div class="text-center mb-2">
+                                            <img src="{{ URL::asset('storage/' . $item->thumbnails) }}" class="img-fluid"
+                                                style="height: 20em; object-fit: cover" alt="">
+                                        </div>
+                                        <h5 class="text-start fw-bold">{{ $item->title }}</h5>
+                                        <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
                                     </div>
-                                    <div class="text-center mb-2">
-                                        <img src="{{ URL::asset('storage/' . $item->thumbnails) }}" class="img-fluid"
-                                            style="height: 20em; object-fit: cover" alt="">
-                                    </div>
-                                    <h5 class="text-start fw-bold">{{ $item->title }}</h5>
-                                    <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @empty
+                        <h4 class="text-center fw-bold my-5">Tidak ada media</h4>
+                    @endforelse
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary my-5">Temukan Lebih Banyak</a>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    @if ($feedback->count() > 0)
+        <section id="review" class="mb-4">
+            <div class="container">
+                <h4 class="text-warning mb-4 fw-bold">Umpan Balik Pelanggan Kami</h4>
+                <div class="row justify-content-center">
+                    @foreach ($feedback as $feedback)
+                        <div class="col-12 col-md-6 col-lg-3 mb-4">
+                            <div class="card card-shadow" style="height: 13em">
+                                <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
+                                    <img src="{{ URL::asset('storage/profile/default.png') }}" class="mb-2"
+                                        style="width: 3em; height: 3em; object-fit: cover" alt="">
+                                    <h6 class="fw-bold text-start mb-4">{{ $feedback->name }}</h6>
+                                    <p class="text-start">{{ $feedback->message }}</p>
                                 </div>
                             </div>
-                        </a>
-                    </div>
-                @empty
-                    <h4 class="text-center fw-bold my-5">Tidak ada media</h4>
-                @endforelse
-            </div>
-            <div class="text-center">
-                <a href="#" class="btn btn-primary my-5">Temukan Lebih Banyak</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="review" class="mb-4">
-        <div class="container">
-            <h4 class="text-warning mb-4 fw-bold">Umpan Balik Pelanggan Kami</h4>
-            <div class="row justify-content-center">
-                @foreach ($feedback as $feedback)
-                    <div class="col-12 col-md-6 col-lg-3 mb-4">
-                        <div class="card card-shadow" style="height: 13em">
-                            <div class="card-body text-center py-4 d-flex flex-column justify-content-start">
-                                <img src="{{ URL::asset('storage/profile/default.png') }}" class="mb-2"
-                                    style="width: 3em; height: 3em; object-fit: cover" alt="">
-                                <h6 class="fw-bold text-start mb-4">{{ $feedback->name }}</h6>
-                                <p class="text-start">{{ $feedback->message }}</p>
-                            </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
+
 @endsection
 
 @push('script')
