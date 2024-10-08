@@ -10,7 +10,7 @@
                         <div class="carousel-caption">
                             <h5>{{ $set->subtitle }}</h5>
                             <p>{{ $set->description ?? 'Some placeholder content' }}</p>
-                            <a href="#terbaru" class="btn btn-primary">Temukan Lebih Banyak</a>
+                            <a href="{{ route('media') }}" class="btn btn-primary">Temukan Lebih Banyak</a>
                         </div>
                     </div>
                 @endforeach

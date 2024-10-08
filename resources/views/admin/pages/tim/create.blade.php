@@ -43,13 +43,13 @@
                 <label for="facebook_name" class="form-label">Nama Facebook</label>
                 <input type="text" class="form-control" name="facebook_name" id="facebook_name" aria-describedby="helpFb"
                     placeholder="Masukkan Nama Facebook" />
-                <small id="helpFb" class="form-text text-muted">Masukkan nama facebook</small>
+                <small id="helpFb" class="form-text text-muted">Masukkan link facebook</small>
             </div>
             <div class="mb-3">
                 <label for="twitter_name" class="form-label">Nama Twitter</label>
                 <input type="text" class="form-control" name="twitter_name" id="twitter_name"
                     aria-describedby="helpTwitter" placeholder="Masukkan Nama Twitter" />
-                <small id="helpTwitter" class="form-text text-muted">Masukkan nama twitter</small>
+                <small id="helpTwitter" class="form-text text-muted">Masukkan link twitter</small>
             </div>
             <div class="mb-3">
                 <label for="img_path" class="form-label">Unggah Foto</label>
