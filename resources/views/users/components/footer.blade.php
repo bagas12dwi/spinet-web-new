@@ -83,7 +83,7 @@
 <footer class="py-5 bg-web-primary">
     <div class="container">
         <div class="row">
-            <div class="col-4 col-md-4 mb-3">
+            <div class="col-4 col-md-4 col-sm-6 mb-3">
                 <h5>Informasi Kontak</h5>
                 @php
                     $no_telp = $setting->where('title', 'no telepon')->first();
@@ -99,7 +99,7 @@
                 </ul>
             </div>
 
-            <div class="col-4 col-md-4 mb-3">
+            <div class="col-4 col-md-4 col-sm-6 mb-3">
                 <h5>Link Cepat</h5>
                 <ul class="nav flex-column">
                     <li class="nav-item mb-2"><a href="{{ route('home') }}" class="nav-link p-0 text-light">Beranda</a>
@@ -119,7 +119,7 @@
                 </ul>
             </div>
 
-            <div class="col-md-4 offset-md-1 mb-3 ms-auto">
+            <div class="col-md-4 col-sm-12 offset-md-1 mb-3 ms-auto">
                 <a class="navbar-brand" href="#">
                     <img src="{{ URL::asset('assets/img/logo.png') }}" alt="Bootstrap">
                 </a>
