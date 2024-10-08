@@ -79,7 +79,7 @@
                                     <h5 class="fw-bold card-text">{{ $item->name }}</h5>
                                     <h6 class="fw-400 card-text">{{ $item->role }}</h6>
                                     <p class="card-text">{{ Str::limit($item->description, 80, '...') }}</p>
-                                    <ul class="list-unstyled d-flex justify-content-center gap-1">
+                                    <ul class="list-unstyled d-flex justify-content-start gap-1">
                                         @if ($item->twitter_name)
                                             <li>
                                                 <a class="link-body-emphasis rounded-circle border border-muted border-2 d-flex justify-content-center align-items-center text-muted"
