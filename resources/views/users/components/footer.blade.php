@@ -102,15 +102,20 @@
             <div class="col-4 col-md-4 mb-3">
                 <h5>Link Cepat</h5>
                 <ul class="nav flex-column">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Beranda</a>
+                    <li class="nav-item mb-2"><a href="{{ route('home') }}" class="nav-link p-0 text-light">Beranda</a>
                     </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Materi Ajar</a>
+                    <li class="nav-item mb-2"><a href="{{ route('modul') }}" class="nav-link p-0 text-light">Modul
+                            Ajar</a>
                     </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Modul Ajar</a>
+                    <li class="nav-item mb-2"><a href="{{ route('materi') }}" class="nav-link p-0 text-light">Materi
+                            Ajar</a>
                     </li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Tentang
+                    <li class="nav-item mb-2"><a href="{{ route('media') }}" class="nav-link p-0 text-light">Media</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="{{ route('tentang') }}" class="nav-link p-0 text-light">Tentang
                             Kami</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-light">Kontak</a></li>
+                    <li class="nav-item mb-2"><a href="{{ route('kontak') }}" class="nav-link p-0 text-light">Kontak</a>
+                    </li>
                 </ul>
             </div>
 

@@ -17,7 +17,7 @@
                         <div class="title">
                             <h1 class="text-primary mb-5 fw-bold text-title" style="font-size: 5em">Kontak Kami</h1>
                             <h5 class="text-primary text-title"><span class="text-warning text-sub">Jika Anda memiliki
-                                    pertanyaan atau memerlukan informasi</span>lebih lanjut tentang SPINET, jangan ragu
+                                    pertanyaan atau memerlukan informasi</span> lebih lanjut tentang SPINET, jangan ragu
                                 <span class="text-warning text-sub">untuk
                                     menghubungi kami.</span>
                             </h5>

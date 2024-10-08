@@ -17,7 +17,7 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
                     <a class="nav-link {{ url()->current() == route('home') ? 'active-nav' : '' }}" aria-current="page"
-                        href="{{ route('home') }}">Belajar</a>
+                        href="{{ route('home') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ url()->current() == route('modul') ? 'active-nav' : '' }}"
@@ -48,7 +48,9 @@
                                 alt="">
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{{ route('user.bookmark') }}">Dashboard</a></li>
+                            <li><a class="dropdown-item"
+                                    href="{{ auth()->user()->role == 'admin' ? route('admin.media.index') : route('user.bookmark') }}">Dashboard</a>
+                            </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

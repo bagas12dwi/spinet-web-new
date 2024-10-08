@@ -38,7 +38,7 @@
                         <div class="card p-0">
                             <div class="card-header fw-bold bg-warning">Pilih Media</div>
                             <div class="card-body">
-                                @foreach (['KIT', 'Video', 'Audio'] as $mediaType)
+                                @foreach (['PDF', 'Gambar', 'Video', 'Audio'] as $mediaType)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="mediaTypes[]"
                                             value="{{ strtolower($mediaType) }}" id="media-{{ $loop->index }}"
@@ -55,7 +55,7 @@
                         <div class="card p-0">
                             <div class="card-header fw-bold bg-warning">Bahan Ajar</div>
                             <div class="card-body">
-                                @foreach (['Modul', 'Materi'] as $bahanAjar)
+                                @foreach (['KIT', 'Modul', 'Materi'] as $bahanAjar)
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="bahanAjar[]"
                                             value="{{ strtolower($bahanAjar) }}" id="bahan-{{ $loop->index }}"
@@ -98,18 +98,19 @@
             </div>
             <div class="row justify-content-center">
                 @forelse ($media as $item)
-                    <div class="col-12 col-sm-6 col-md-4 mb-4">
+                    <div class="col-12 col-sm-6 col-md-3 mb-4">
                         <a href="{{ route('detail', $item->id) }}" class="nav-link">
                             <div class="card card-shadow" style="height: 33em">
-                                <div class="card-body text-center d-flex flex-column justify-content-center">
+                                <div class="card-body text-center d-flex flex-column">
                                     <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold text-uppercase">
                                         {{ $item->extension }}
                                     </div>
                                     <div class="text-center mb-2">
                                         <img src="{{ URL::asset('storage/' . $item->thumbnails) }}" class="img-fluid"
-                                            style="height: 20em; object-fit: cover" alt="">
+                                            style="height: 300px; max-height: 300px; width: 250px; object-fit: cover"
+                                            alt="">
                                     </div>
-                                    <h5 class="text-start fw-bold">{{ $item->title }}</h5>
+                                    <h5 class="text-start fw-bold text-truncate">{{ $item->title }}</h5>
                                     <p class="text-start fst-italic">{{ $item->created_at->format('d F Y') }}</p>
                                     <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
                                 </div>

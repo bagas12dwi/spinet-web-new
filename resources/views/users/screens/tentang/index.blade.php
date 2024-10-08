@@ -74,7 +74,7 @@
                         <div class="col-6 col-sm-4 col-md-3 mb-4">
                             <div class="card">
                                 <img src="{{ URL::asset('storage/' . $item->img_path) }}" class="card-img-top img-fluid"
-                                    style="height: 12em; object-fit: cover;" alt="Foto Tim">
+                                    style="height: 200px; width: 250px; object-fit: cover;" alt="Foto Tim">
                                 <div class="card-body">
                                     <h5 class="fw-bold card-text">{{ $item->name }}</h5>
                                     <h6 class="fw-400 card-text">{{ $item->role }}</h6>

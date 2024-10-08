@@ -38,7 +38,9 @@ class MediaController extends Controller
         if (!empty($mediaTypes)) {
             // Map media types to corresponding extensions or types
             $typeMappings = [
-                'kit' => ['jpg', 'jpeg', 'png', 'pdf'],
+                'kit' => ['kit'],
+                'pdf' => ['pdf'],
+                'gambar' => ['jpg', 'jpeg', 'png'],
                 'video' => ['mp4'],
                 'audio' => ['mp3'],
                 'modul' => ['modul'], // Assuming these are stored as 'modul' in database

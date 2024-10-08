@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DiscussionController;
 use App\Http\Controllers\Admin\FeedbackController;
+use App\Http\Controllers\Admin\KitController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\ModulController;
 use App\Http\Controllers\Admin\QuestionController;
@@ -24,6 +25,7 @@ Route::group(['middleware' => ['auth', 'role:admin']], function () {
     Route::resource('/diskusi', DiscussionController::class)->names('diskusi');
     Route::resource('/pengguna', UserController::class)->names('pengguna');
     Route::resource('/feedback', FeedbackController::class)->names('feedback');
+    Route::resource('/kit', KitController::class)->names('kit');
     Route::post('/feedback/toggle/{id}', [FeedbackController::class, 'toggleVisibility'])->name('feedback.toggle');
 
 

@@ -102,7 +102,7 @@
                     <h4 class="text-warning">Gabung sekarang dan rasakan sendiri bagaimana SPINET dapat mengubah cara anda
                         belajar dan mengajar Fisika.</h4>
                     <p>Jangan ragu untuk menghubungi, kami dengan senang hati siap membantu!</p>
-                    <button class="btn btn-primary mb-2">Kontak Kami</button>
+                    <a href="{{ route('kontak') }}" class="btn btn-primary mb-2">Kontak Kami</a>
                     <div class="card card-shadow bg-web-primary ms-0" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="text-white">Total Pengunjung</h5>
@@ -181,18 +181,19 @@
                 <h4 class="text-warning mb-4 fw-bold">Media Terbaru</h4>
                 <div class="row justify-content-center">
                     @forelse ($media as $item)
-                        <div class="col-12 col-md-6 col-lg-3 mb-4">
+                        <div class="col-12 col-sm-6 col-md-3 mb-4">
                             <a href="{{ route('detail', $item->id) }}" class="nav-link">
                                 <div class="card card-shadow" style="height: 33em">
-                                    <div class="card-body text-center d-flex flex-column justify-content-center">
+                                    <div class="card-body text-center d-flex flex-column">
                                         <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold text-uppercase">
                                             {{ $item->extension }}
                                         </div>
                                         <div class="text-center mb-2">
                                             <img src="{{ URL::asset('storage/' . $item->thumbnails) }}" class="img-fluid"
-                                                style="height: 20em; object-fit: cover" alt="">
+                                                style="height: 300px; width: 250px; object-fit: cover" alt="">
                                         </div>
-                                        <h5 class="text-start fw-bold">{{ $item->title }}</h5>
+                                        <h5 class="text-start fw-bold text-truncate">{{ $item->title }}</h5>
+                                        <p class="text-start fst-italic">{{ $item->created_at->format('d F Y') }}</p>
                                         <p class="text-start">{{ Str::limit($item->description, 50, '...') }}</p>
                                     </div>
                                 </div>
