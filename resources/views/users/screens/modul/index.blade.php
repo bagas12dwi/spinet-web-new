@@ -172,7 +172,7 @@
                     <h4 class="text-warning">Gabung sekarang dan rasakan sendiri bagaimana SPINET dapat mengubah cara
                         anda belajar dan mengajar Fisika.</h4>
                     <p>Jangan ragu untuk menghubungi, kami dengan senang hati siap membantu!</p>
-                    <button class="btn btn-primary">Kontak Kami</button>
+                    <a href="{{ route('kontak') }}" class="btn btn-primary mb-2">Kontak Kami</a>
                 </div>
             </div>
         </div>
@@ -186,7 +186,7 @@
                 @endphp
                 "{{ $quotes->description }}"
             </h3>
-            <a href="#" class="btn btn-primary">Buka Menu Media</a>
+            <a href="{{ route('media') }}" class="btn btn-primary">Buka Menu Media</a>
         </div>
     </section>
 @endsection

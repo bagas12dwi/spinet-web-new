@@ -204,7 +204,7 @@
                     @endforelse
                 </div>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary my-5">Temukan Lebih Banyak</a>
+                    <a href="{{ route('media') }}" class="btn btn-primary my-5">Temukan Lebih Banyak</a>
                 </div>
             </div>
         </section>

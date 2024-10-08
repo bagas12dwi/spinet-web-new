@@ -50,7 +50,7 @@ class MediaController extends Controller
             $query->where(function ($subQuery) use ($mediaTypes, $typeMappings) {
                 foreach ($mediaTypes as $type) {
                     if (isset($typeMappings[$type])) {
-                        $subQuery->orWhereIn('type', $typeMappings[$type]);
+                        $subQuery->orWhereIn('extension', $typeMappings[$type]);
                     }
                 }
             });
