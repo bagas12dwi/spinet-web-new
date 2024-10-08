@@ -31,7 +31,7 @@
     </div>
     <div class="container mb-4">
         <div class="row">
-            <div class="col-3 col-md-3 col-sm-12">
+            <div class="col-lg-3 col-md-3 col-sm-12">
                 <div class="card card-shadow">
                     <div class="card-body text-center d-flex flex-column">
                         <div class="bg-warning py-1 px-3 align-self-end mb-2 fw-bold">PDF</div>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-9 col-md-9 col-sm-12">
+            <div class="col-lg-9 col-md-9 col-sm-12">
                 <h3 class="fw-bold">{{ $media->title }}
                 </h3>
                 <p class="fst-italic text-muted">Diunggah pada {{ $media->created_at->format('d F Y') }}</p>
